@@ -143,6 +143,7 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                             numberOfCalories: 0,
                             unitAmount: 0,
                             sellingCount: 0,
+                            reviews: [],
                           );
                           context.read<AddProductCubit>().addProduct(input);
                         } else {
