@@ -10,15 +10,28 @@ class AddProductInputModel {
   final bool isFeatured;
   final File image;
   String? imageUrl;
+  final int expirationsMonths;
+  final bool isOrganic;
+  final int numberOfCalories;
+  final num avgRating = 0;
+  final num ratingCount = 0;
+  final int unitAmount;
+  final int sellingCount;
 
-  AddProductInputModel(
-      {required this.name,
-      required this.code,
-      required this.description,
-      required this.price,
-      required this.isFeatured,
-      required this.image,
-      this.imageUrl});
+  AddProductInputModel({
+    required this.name,
+    required this.code,
+    required this.description,
+    required this.price,
+    required this.isFeatured,
+    required this.image,
+    required this.imageUrl,
+    required this.expirationsMonths,
+    required this.isOrganic,
+    required this.numberOfCalories,
+    required this.unitAmount,
+    required this.sellingCount,
+  });
 
   factory AddProductInputModel.fromEntity(AddProductInputEntity entity) {
     return AddProductInputModel(
@@ -28,7 +41,12 @@ class AddProductInputModel {
         price: entity.price,
         isFeatured: entity.isFeatured,
         image: entity.image,
-        imageUrl: entity.imageUrl);
+        imageUrl: entity.imageUrl,
+        expirationsMonths: entity.expirationsMonths,
+        isOrganic: entity.isOrganic,
+        numberOfCalories: entity.numberOfCalories,
+        unitAmount: entity.unitAmount,
+        sellingCount: entity.sellingCount);
   }
   toMap() {
     return {
@@ -37,7 +55,6 @@ class AddProductInputModel {
       'description': description,
       'price': price,
       'isFeatured': isFeatured,
-      'image': image,
       'imageUrl': imageUrl
     };
   }
