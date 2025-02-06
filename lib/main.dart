@@ -7,9 +7,11 @@ import 'package:fruits_hub_dashbord/features/dashbord/views/dashbord_view.dart';
 import 'package:fruits_hub_dashbord/firebase_options.dart';
 
 import 'core/services/custom_bloc_observer.dart';
+import 'core/services/supabase_Storage_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  SupabaseStorageService.initSupabase();
   Bloc.observer = CustomBlocObserver();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
