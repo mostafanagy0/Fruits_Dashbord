@@ -10,15 +10,19 @@ import 'core/services/custom_bloc_observer.dart';
 import 'core/services/supabase_Storage_service.dart';
 
 void main() async {
+  Bloc.observer = CustomBlocObserver(); // ✅ خليها في الأول
   WidgetsFlutterBinding.ensureInitialized();
-  SupabaseStorageService.initSupabase();
-  Bloc.observer = CustomBlocObserver();
+
+  await SupabaseStorageService.initSupabase();
+  await SupabaseStorageService.createBucketIfNotExists('fruits_images');
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  setup();
+
+  setup(); // ✅ مرة واحدة فقط
+
   runApp(const MainApp());
-  setup();
 }
 
 class MainApp extends StatelessWidget {

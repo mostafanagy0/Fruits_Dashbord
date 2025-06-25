@@ -16,15 +16,10 @@ import 'package:flutter/foundation.dart'
 /// ```
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
-    if (kIsWeb) {
-      return web;
-    }
+    if (kIsWeb) return web;
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for android - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return android; // ✅ رجع android بدل throw
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
@@ -32,18 +27,13 @@ class DefaultFirebaseOptions {
       case TargetPlatform.windows:
         return windows;
       case TargetPlatform.linux:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for linux - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        throw UnsupportedError('...'); // optional
       default:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions are not supported for this platform.',
-        );
+        throw UnsupportedError('...');
     }
   }
 
-  static const FirebaseOptions Android = FirebaseOptions(
+  static const FirebaseOptions android = FirebaseOptions(
     apiKey: "AIzaSyCci4CxRC8feEgpvajxIuDw4A7RXWcH3BQ",
     appId: '1:691454814723:web:0f02ecc562b2184b6cbc36',
     messagingSenderId: '691454814723',

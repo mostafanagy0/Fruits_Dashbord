@@ -6,24 +6,39 @@ import 'package:path/path.dart' as b;
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SupabaseStorageService implements StorageService {
-  static late Supabase _supabase;
-  static initSupabase() async {
-    _supabase = await Supabase.initialize(
-      url: BackendEndpoints.KSupabaseUrl,
-      anonKey: BackendEndpoints.KSupabaseKey,
+  /// initialize Supabase once (call in main)
+  static Future<void> initSupabase() async {
+    await Supabase.initialize(
+      url: BackendEndpoints.kSupabaseUrl,
+      anonKey: BackendEndpoints.kSupabaseKey,
     );
   }
 
-  @override
+  /// create bucket if it doesn't exist
+  // recomended to crate bucket from supabase dashboard but you can use this method to create bucket programmatically
+  static Future<void> createBucketIfNotExists(String bucketName) async {
+    final client = Supabase.instance.client;
+    final buckets = await client.storage.listBuckets();
 
-  // file is the file that we want to upload
-  // path is the path where we want to upload the file
+    final isExist = buckets.any((bucket) => bucket.id == bucketName);
+    if (!isExist) {
+      await client.storage.createBucket(bucketName);
+    }
+  }
+
+  @override
   Future<String> uplodeFile(File file, String path) async {
-    String fileName = b.basename(file.path);
-    String extensionName = b.extension(file.path);
-    var result = await _supabase.client.storage
-        .from('fruits_images')
-        .upload('$path/$fileName.$extensionName', file);
-    return result;
+    final client = Supabase.instance.client;
+    final fileName = b.basenameWithoutExtension(file.path);
+    final extension = b.extension(file.path);
+
+    final filePath = '$path/$fileName$extension';
+
+    await client.storage.from('fruits_images').upload(filePath, file);
+
+    final publicUrl =
+        client.storage.from('fruits_images').getPublicUrl(filePath);
+
+    return publicUrl;
   }
 }

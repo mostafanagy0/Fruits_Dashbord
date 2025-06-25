@@ -5,7 +5,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_hub_dashbord/core/widgets/custom_button.dart';
-import 'package:fruits_hub_dashbord/features/add_product/domain/entities/add_product_input_entity.dart';
+import 'package:fruits_hub_dashbord/features/add_product/domain/entities/product_input_entity.dart';
 import 'package:fruits_hub_dashbord/features/add_product/presentation/maneger/cubit/add_product_cubit.dart';
 import 'package:fruits_hub_dashbord/features/add_product/presentation/widgets/image_field.dart';
 import 'package:fruits_hub_dashbord/features/add_product/presentation/widgets/is_featured_chick_box.dart';
@@ -131,7 +131,7 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                         if (formKey.currentState!.validate()) {
                           formKey.currentState!.save();
 
-                          AddProductInputEntity input = AddProductInputEntity(
+                          ProductInputEntity input = ProductInputEntity(
                             name: name,
                             code: code,
                             description: description,
@@ -142,7 +142,6 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                             isOrganic: false,
                             numberOfCalories: 0,
                             unitAmount: 0,
-                            sellingCount: 0,
                             reviews: [],
                           );
                           context.read<AddProductCubit>().addProduct(input);

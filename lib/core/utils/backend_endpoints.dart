@@ -5,7 +5,7 @@ class BackendEndpoints {
   static const isUsserExits = 'users';
   static const addProducts = 'addProducts';
 
-  static const KSupabaseUrl = 'https://sphhflxbbsxbsaentepq.supabase.co';
-  static const KSupabaseKey =
-      'eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNwaGhmbHhiYnN4YnNhZW50ZXBxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzg4NjQ5MTcsImV4cCI6MjA1NDQ0MDkxN30';
+  static const kSupabaseUrl = 'https://xzpuacshqhapqwydlhio.supabase.co';
+  static const kSupabaseKey =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh6cHVhY3NocWhhcHF3eWRsaGlvIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1MDgwNTMzMiwiZXhwIjoyMDY2MzgxMzMyfQ.FmfRyCg0l2VZQJsvP7hyC0HuzN3YH5LzMDY4nAXChdE';
 }
